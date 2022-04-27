@@ -1,31 +1,36 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 const App = () => {
   
-  
   const [categories,setCategories] = useState([]);
-  
+
   useEffect(() => {
-    const productCat = [{
-        name: 'Hats',
-        key: 1
+    const productCat = [
+      {
+        "id": 1,
+        "title": "hats",
+        "imageUrl": "https://i.ibb.co/cvpntL1/hats.png"
       },
       {
-        name: 'Jackets',
-        key: 2
+        "id": 2,
+        "title": "jackets",
+        "imageUrl": "https://i.ibb.co/px2tCc3/jackets.png"
       },
       {
-        name: 'Sneakers',
-        key: 3
+        "id": 3,
+        "title": "sneakers",
+        "imageUrl": "https://i.ibb.co/0jqHpnp/sneakers.png"
       },
       {
-        name: 'Womens',
-        key: 4
+        "id": 4,
+        "title": "womens",
+        "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png"
       },
       {
-        name: 'Mens',
-        key: 5
-      },
+        "id": 5,
+        "title": "mens",
+        "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
+      }
     ];
     
     setCategories(productCat)
@@ -35,16 +40,19 @@ const App = () => {
   return (
     <div className="categories-container">
       {
-        categories.map(category => {
-          return (
-          <div className="category-container" key={category.key}>
-            <div className="category-body-container">
-              <h2>{category.name}</h2>
-              <p>Shop Now</p>
+        categories.map(({title,id,imageUrl}) =>  (
+            <div className="category-container" key={ id }>
+              <div className='background-image' style={{
+                backgroundImage: `url(${imageUrl})`
+              }}/>
+              <div className="category-body-container">
+                <h2>{ title }</h2>
+                <p>Shop Now</p>
+              </div>
             </div>
-          </div>
-          );
-        })
+          )
+        )
+
       }
       
     </div>
