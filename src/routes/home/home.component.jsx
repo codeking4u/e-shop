@@ -4,7 +4,7 @@ import Directory from '../../components/directory/directory.component';
 
 
 const Home = () => {
-  
+  /* destructuring the returned values */
   const [categories,setCategories] = useState([]);
 
   useEffect(() => {
