@@ -5,6 +5,12 @@ import { getAuth,
     signInWithRedirect
 } from 'firebase/auth'
 
+import { getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+} from 'firebase/firestore'
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDOyrepSrOG1_LqQ24sTtgFw6r74fDlZz4",
@@ -24,5 +30,30 @@ provider.getCustomParameters({
 });
 
 export const auth = getAuth();
-
 export const signinWithGooglePopup =  () => signInWithPopup(auth, provider);
+
+export const db = getFirestore();
+export const createUserDocumentFromAuth = async (userAuth) => {
+    const userDocRef = doc(db,'users', userAuth.uid);
+    console.log(userDocRef)
+
+    /* create snapshot, required to create doc */
+    const snapShot = await getDoc(userDocRef);
+    console.log(snapShot.exists())
+
+    /* check if document exist */
+    if(!snapShot.exists()){
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+
+        try {
+            const createDoc = await setDoc(userDocRef,{
+                displayName,
+                email,
+                createdAt
+            })
+        } catch (error) {
+            console.error(`Error creating user ${error.message}`);
+        }
+    }
+}
