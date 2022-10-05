@@ -8,13 +8,9 @@ import "./authentication.styles.scss";
 
 const Authentication = () => {
   return (
-    <div>
-      {" "}
-      THis is sign in page
-      <div className="authentication-wrapper">
-        <SignInForm />
-        <SignUpForm />
-      </div>
+    <div className="authentication-wrapper">
+      <SignInForm />
+      <SignUpForm />
     </div>
   );
 };
