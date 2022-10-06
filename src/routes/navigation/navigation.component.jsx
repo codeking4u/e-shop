@@ -1,6 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
 import { Fragment, useContext } from "react";
 
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
@@ -26,13 +29,9 @@ const Navigation = () => {
           <Link className="nav-link" to="/">
             Home
           </Link>
-        </div>
-        <div className="nav-links-container">
           <Link className="nav-link" to="/shop">
             Shop
           </Link>
-        </div>
-        <div className="nav-links-container">
           {currentUser ? (
             <span className="nav-link" onClick={signOutHandler}>
               Sign out
@@ -42,7 +41,10 @@ const Navigation = () => {
               Sign In
             </Link>
           )}
+
+          <CartIcon />
         </div>
+        <CartDropdown />
       </div>
       <Outlet />
     </Fragment>
