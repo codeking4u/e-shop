@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext({
-  isCartOpen: true,
+  isCartOpen: false,
   setIsCartOpen: () => {},
   cartItems: [],
   addItemtoCart: () => {},
@@ -23,7 +23,7 @@ const addCartItem = (cartItems, productToAdd) => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [isCartOpen, setIsCartOpen] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
 
