@@ -26,13 +26,16 @@ const Checkout = () => {
           <span>Price</span>
         </div>
         <div className="header-clock">
+          <span>Sub-Total</span>
+        </div>
+        <div className="header-clock">
           <span>Remove</span>
         </div>
       </div>
       {cartItems.map((item) => {
         return <CheckoutItem key={item.id} item={item} />;
       })}
-      <span className="total">0</span>
+      <span className="total">Total 0</span>
     </div>
   );
 };
