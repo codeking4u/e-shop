@@ -3,17 +3,17 @@ import { useContext } from "react";
 import ProductCard from "../../components/product-card/product-card.component";
 import { ProductContext } from "../../contexts/product.context";
 
-import "./shop.styles.scss";
+import { ProductsContainer } from "./shop.styles.jsx";
 
 const Shop = () => {
   const { products } = useContext(ProductContext);
 
   return (
-    <div className="products-container">
+    <ProductsContainer>
       {products.map((product) => {
         return <ProductCard key={product.id} product={product}></ProductCard>;
       })}
-    </div>
+    </ProductsContainer>
   );
 };
 
