@@ -6,9 +6,10 @@ import CartItem from "../cart-item/cart-item.component";
 
 import { CartContext } from "../../contexts/cart.context";
 
+import Button from "../button/button.component";
+
 import {
   CartDropDownConatiner,
-  ButtonStyled,
   EmptyMessage,
   CartItems,
 } from "./cart-dropdown.styles";
@@ -23,13 +24,15 @@ const CartDropdown = () => {
   return (
     <CartDropDownConatiner>
       <CartItems>
-        {cartItems.map((cartItem) => {
-          console.log(cartItem);
-
-          return <CartItem key={cartItem.id} item={cartItem} />;
-        })}
+        {cartItems.length ? (
+          cartItems.map((cartItem) => {
+            return <CartItem key={cartItem.id} item={cartItem} />;
+          })
+        ) : (
+          <EmptyMessage as="span">Cart is Empty</EmptyMessage>
+        )}
       </CartItems>
-      <ButtonStyled onClick={toCheckout}>Go to checkout</ButtonStyled>
+      <Button onClick={toCheckout}>Go to checkout</Button>
     </CartDropDownConatiner>
   );
 };
